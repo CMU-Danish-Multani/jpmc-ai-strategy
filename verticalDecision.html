@@ -1,0 +1,492 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>:root{color-scheme:light dark}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+</head><body>
+<title>Fraud or Financial Crime</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --ground:#FCFCFB;--surface:#FFFFFF;--surface-2:#F5F4F1;
+  --ink:#1A1A17;--ink-2:#4A4943;--ink-3:#77756D;
+  --rule:#E4E2DC;--rule-2:#D2CFC7;
+  --A:#2E5FD0;--A-bg:#EAEFFB;--D:#C06A12;--D-bg:#FBF0E3;
+  --ok:#2F6B3F;--ok-bg:#E8F0E9;--warn:#8A6114;--warn-bg:#F6EEDC;--none:#6E6C66;--none-bg:#EEEDE9;
+  --focus:#2E5FD0;
+  --shadow:0 1px 2px rgba(26,26,23,.05),0 4px 14px -6px rgba(26,26,23,.10);
+  --fd:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;
+  --fb:'Source Serif 4',Georgia,serif;
+  --fm:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#161719;--surface:#1D1F22;--surface-2:#25272B;
+  --ink:#EAE9E4;--ink-2:#B7B5AE;--ink-3:#8B8983;
+  --rule:#2E3136;--rule-2:#3C4046;
+  --A:#6D8DEE;--A-bg:#1B2233;--D:#D9902F;--D-bg:#2A2116;
+  --ok:#79B98C;--ok-bg:#1E2A22;--warn:#D6A748;--warn-bg:#2B2418;--none:#8B8983;--none-bg:#232528;
+  --focus:#7E9CF5;--shadow:0 1px 2px rgba(0,0,0,.3),0 4px 16px -6px rgba(0,0,0,.45);
+}}
+:root[data-theme="dark"]{
+  --ground:#161719;--surface:#1D1F22;--surface-2:#25272B;
+  --ink:#EAE9E4;--ink-2:#B7B5AE;--ink-3:#8B8983;
+  --rule:#2E3136;--rule-2:#3C4046;
+  --A:#6D8DEE;--A-bg:#1B2233;--D:#D9902F;--D-bg:#2A2116;
+  --ok:#79B98C;--ok-bg:#1E2A22;--warn:#D6A748;--warn-bg:#2B2418;--none:#8B8983;--none-bg:#232528;
+  --focus:#7E9CF5;--shadow:0 1px 2px rgba(0,0,0,.3),0 4px 16px -6px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--fb);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,.ui{font-family:var(--fd)}
+h1,h2,h3{margin:0;text-wrap:balance}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:3px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+
+/* header */
+header.top{border-bottom:1px solid var(--rule);background:var(--surface)}
+.eyebrow{font-family:var(--fd);font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+header.top h1{font-size:clamp(27px,4.2vw,42px);font-weight:800;letter-spacing:-.02em;line-height:1.06;margin:9px 0 12px}
+header.top .sub{max-width:64ch;color:var(--ink-2);font-size:15.5px;margin:0}
+.topin{padding:30px 0 26px}
+.stamp{display:inline-block;margin-top:15px;font-family:var(--fm);font-size:11.5px;color:var(--ink-2);background:var(--surface-2);border:1px solid var(--rule);padding:5px 10px;border-radius:3px}
+
+/* verdict banner */
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;background:var(--surface);border:1px solid var(--rule);border-left:4px solid var(--D);border-radius:6px;padding:18px 20px;margin:26px 0 8px;box-shadow:var(--shadow)}
+.verdict .big{font-family:var(--fd);font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--D);writing-mode:horizontal-tb}
+.verdict p{margin:0;font-size:15px;color:var(--ink-2)}
+.verdict b{color:var(--ink)}
+@media (max-width:640px){.verdict{grid-template-columns:1fr;gap:8px}}
+
+/* nav */
+nav.tabs{position:sticky;top:0;z-index:30;background:var(--surface);border-bottom:1px solid var(--rule);box-shadow:var(--shadow);margin-top:26px}
+.tabsin{display:flex;gap:2px;overflow-x:auto;padding:0 22px;max-width:1120px;margin:0 auto}
+nav.tabs button{font-family:var(--fd);font-size:13px;font-weight:600;color:var(--ink-3);background:none;border:0;border-bottom:2px solid transparent;padding:13px 12px;cursor:pointer;white-space:nowrap}
+nav.tabs button:hover{color:var(--ink)}
+nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+
+main{padding:34px 0 70px}
+.panel[hidden]{display:none}
+h2.sh{font-size:22px;font-weight:700;letter-spacing:-.01em;padding-bottom:9px;border-bottom:2px solid var(--ink);margin-bottom:18px}
+.lede{color:var(--ink-2);font-size:15.5px;max-width:68ch;margin:0 0 24px}
+
+/* two-column compare */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:760px){.two{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:18px 19px;border-top:3px solid var(--rule)}
+.card.a{border-top-color:var(--A)}
+.card.d{border-top-color:var(--D)}
+.tag{display:inline-flex;align-items:center;gap:6px;font-family:var(--fd);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:3px}
+.tag.a{color:var(--A);background:var(--A-bg)}
+.tag.d{color:var(--D);background:var(--D-bg)}
+.card h3{font-size:17px;font-weight:700;margin:11px 0 8px;letter-spacing:-.01em}
+.card p{margin:0 0 12px;font-size:15px;color:var(--ink-2)}
+.card p:last-child{margin-bottom:0}
+.card strong{color:var(--ink)}
+
+/* dimension rows */
+.dim{background:var(--surface);border:1px solid var(--rule);border-radius:6px;margin-bottom:12px;overflow:hidden}
+.dim>summary{list-style:none;cursor:pointer;padding:14px 18px;display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:center}
+.dim>summary::-webkit-details-marker{display:none}
+.dim>summary:hover{background:var(--surface-2)}
+.dim .dt{font-family:var(--fd);font-size:15.5px;font-weight:600}
+.dim .dw{font-family:var(--fd);font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:11px;white-space:nowrap}
+.dim .dw.a{color:var(--A);background:var(--A-bg)}
+.dim .dw.d{color:var(--D);background:var(--D-bg)}
+.dim .dw.tie{color:var(--ink-3);background:var(--surface-2)}
+.dim .caret{color:var(--ink-3);transition:transform .15s;font-family:var(--fm);font-size:13px}
+.dim[open] .caret{transform:rotate(90deg)}
+.dim .body{padding:0 18px 18px;border-top:1px solid var(--rule)}
+.why{font-size:14px;color:var(--ink-2);background:var(--surface-2);padding:11px 14px;border-radius:4px;margin:16px 0}
+.why b{color:var(--ink)}
+.sxs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:4px}
+@media (max-width:760px){.sxs{grid-template-columns:1fr}}
+.sxs section{min-width:0}
+.sxs h4{font-family:var(--fd);font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin:0 0 9px}
+.sxs.hdr-a h4{color:var(--A)}
+.sxs section p{margin:0 0 10px;font-size:14.5px;color:var(--ink-2)}
+.sxs section p strong{color:var(--ink)}
+.sxs section.aa h4{color:var(--A)}
+.sxs section.dd h4{color:var(--D)}
+ul.pts{margin:0 0 10px;padding-left:0;list-style:none}
+ul.pts li{font-size:14.5px;color:var(--ink-2);padding-left:16px;position:relative;margin-bottom:7px}
+ul.pts li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--rule-2)}
+ul.pts li strong{color:var(--ink)}
+.sw{margin-top:12px;font-size:14px;border-left:3px solid var(--rule-2);padding:2px 0 2px 12px}
+.sw.good{border-left-color:var(--ok)}
+.sw.bad{border-left-color:var(--warn)}
+.sw b{font-family:var(--fd);font-size:11px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:2px}
+.sw.good b{color:var(--ok)}
+.sw.bad b{color:var(--warn)}
+
+/* chips */
+.chip{display:inline-flex;align-items:center;gap:4px;font-family:var(--fd);font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:2px 6px;border-radius:2px;white-space:nowrap;vertical-align:middle}
+.chip::before{content:"";width:5px;height:5px;border-radius:50%}
+.chip.d{color:var(--ok);background:var(--ok-bg)}.chip.d::before{background:var(--ok)}
+.chip.p{color:var(--warn);background:var(--warn-bg)}.chip.p::before{background:var(--warn)}
+.chip.s{color:var(--none);background:var(--none-bg)}.chip.s::before{background:var(--none)}
+
+/* numbers */
+.nums{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:11px;margin:18px 0}
+.num{background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:13px 14px}
+.num .l{font-family:var(--fd);font-size:11.5px;font-weight:600;color:var(--ink-3);display:block;margin-bottom:6px;line-height:1.3}
+.num .v{font-family:var(--fm);font-size:21px;font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.1}
+.num .v.a{color:var(--A)}.num .v.d{color:var(--D)}
+.num .m{font-family:var(--fm);font-size:10.5px;color:var(--ink-3);margin-top:6px}
+
+/* chart */
+figure{margin:20px 0;background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:16px}
+figcaption{font-family:var(--fd);font-size:13.5px;font-weight:600;margin-bottom:2px}
+.fsub{font-family:var(--fd);font-size:12px;color:var(--ink-3);margin-bottom:14px}
+.chart{position:relative}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.gl{stroke:var(--rule);stroke-width:1}
+.ax{fill:var(--ink-3);font-family:'IBM Plex Mono',monospace;font-size:10.5px}
+.dl{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600}
+.bar{transition:opacity .12s}
+.chart:hover .bar{opacity:.45}
+.chart .bar:hover{opacity:1}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--ground);font-family:var(--fm);font-size:11.5px;padding:6px 9px;border-radius:3px;white-space:nowrap;opacity:0;transform:translate(-50%,-120%);transition:opacity .1s;z-index:5}
+.tip.on{opacity:1}
+.legend{display:flex;gap:16px;margin-top:12px;font-family:var(--fd);font-size:12px;color:var(--ink-2);flex-wrap:wrap}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:11px;height:11px;border-radius:2px}
+
+/* callouts */
+.call{border:1px solid var(--rule);border-left:3px solid var(--D);background:var(--surface);border-radius:5px;padding:14px 16px;margin:18px 0;font-size:14.5px;color:var(--ink-2)}
+.call b{color:var(--ink)}
+.call.a{border-left-color:var(--A)}
+.call.warn{border-left-color:var(--warn)}
+
+/* table */
+.tw{overflow-x:auto;border:1px solid var(--rule);border-radius:6px;background:var(--surface);margin:18px 0}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:9px 13px;text-align:left;border-bottom:1px solid var(--rule)}
+thead th{font-family:var(--fd);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);background:var(--surface-2)}
+td.n,th.n{text-align:right;font-family:var(--fm);font-variant-numeric:tabular-nums}
+tbody tr:last-child td{border-bottom:0}
+td.win-a{color:var(--A);font-weight:600}
+td.win-d{color:var(--D);font-weight:600}
+
+ol.todo{padding-left:0;list-style:none;counter-reset:t}
+ol.todo li{counter-increment:t;position:relative;padding-left:34px;margin-bottom:14px;font-size:15px;color:var(--ink-2)}
+ol.todo li::before{content:counter(t);position:absolute;left:0;top:1px;width:23px;height:23px;border-radius:50%;background:var(--surface-2);border:1px solid var(--rule-2);font-family:var(--fm);font-size:11.5px;font-weight:600;color:var(--ink-2);display:grid;place-items:center}
+ol.todo li strong{color:var(--ink)}
+.qa{border-bottom:1px solid var(--rule);padding:13px 0}
+.qa:last-child{border-bottom:0}
+.qa .q{font-family:var(--fd);font-size:15px;font-weight:600;margin-bottom:5px}
+.qa .a{font-size:14.5px;color:var(--ink-2)}
+footer{border-top:1px solid var(--rule);padding:24px 0 60px;font-size:14px;color:var(--ink-2)}
+footer p{max-width:72ch}
+</style>
+
+<header class="top"><div class="wrap topin">
+  <div class="eyebrow">94-804 AI Strategy &middot; JPMorgan Chase &middot; Team decision</div>
+  <h1>Fraud or Financial Crime</h1>
+  <p class="sub">We have to pick one problem and build all six canvases on it for the whole semester. Two finalists are left. This page lays out both, honestly, so the team can decide together.</p>
+  <div class="stamp">Public evidence current through 2026-08-28 &middot; every number labelled</div>
+</div></header>
+
+<div class="wrap">
+  <div class="verdict">
+    <div class="big">Recommend D</div>
+    <p><b>Consumer fraud, by a narrow margin.</b> A scores higher on paper, but three of the facts holding it up failed when we checked them, and its real AI prize shrinks to $9m to $55m. D is smaller in scope but the money is an audited line item and it cannot be quietly redeployed. It is a close call and the team should make it.</p>
+  </div>
+</div>
+
+<nav class="tabs"><div class="tabsin" role="tablist">
+  <button role="tab" aria-selected="true" data-p="p-what">What they are</button>
+  <button role="tab" aria-selected="false" data-p="p-comp">Head to head</button>
+  <button role="tab" aria-selected="false" data-p="p-nums">The numbers</button>
+  <button role="tab" aria-selected="false" data-p="p-course">The whole semester</button>
+  <button role="tab" aria-selected="false" data-p="p-dec">Decide</button>
+</div></nav>
+
+<main class="wrap">
+
+<!-- ========== WHAT THEY ARE ========== -->
+<div class="panel" id="p-what">
+  <h2 class="sh">What each one actually is</h2>
+  <p class="lede">Both are about stopping criminals, and people mix them up. They are different jobs, done by different people, paid for out of different budgets. Here is each one as a person at a desk.</p>
+
+  <div class="two">
+    <article class="card a">
+      <span class="tag a">Candidate A</span>
+      <h3>Financial crime operations</h3>
+      <p><strong>The rule.</strong> Banks are legally required to know who their customers are and to check every payment against government lists of banned people and countries. This is not optional and it is not a product. It is a licence condition.</p>
+      <p><strong>Job one, the KYC file.</strong> KYC means know your customer. Before the bank can serve a company, someone has to build a file proving who that company is, who really owns it behind the shell companies, and how risky it is. Four layers of people touch it: someone gathers the documents, someone drafts the file, someone checks the draft, someone approves it. The file then has to be rebuilt periodically, forever.</p>
+      <p><strong>Job two, the alert queue.</strong> Software checks every payment against sanctions lists. When a name looks like a match it raises an <strong>alert</strong>, which just means "a human should look at this." Most alerts are wrong. Someone sits with that queue and decides, one at a time, whether each is a real match or a coincidence.</p>
+      <p><strong>What AI would do.</strong> Draft the KYC file from public registries so the human edits rather than writes. And on alerts, write the investigator's summary so the human decides faster.</p>
+    </article>
+
+    <article class="card d">
+      <span class="tag d">Candidate D</span>
+      <h3>Consumer fraud and scams</h3>
+      <p><strong>Two different crimes.</strong> In <strong>fraud</strong>, a criminal takes over your account or uses your card without you. In a <strong>scam</strong>, nobody breaks in: you are tricked into sending the money yourself. That difference decides who pays, which is why it matters strategically.</p>
+      <p><strong>Job one, the fraud strategy analyst.</strong> Every card swipe and transfer gets scored in real time and the system decides in milliseconds: let it through, ask for extra proof, or decline it. This person sets and tunes the rules and models behind that decision.</p>
+      <p><strong>Job two, the claim handler.</strong> When a customer says "that payment was not me", someone investigates and rules on it. The loss then lands either on the bank or is charged back to the merchant.</p>
+      <p><strong>What AI would do.</strong> At the scoring step, replace a fixed threshold with a model. The gain is precision: <strong>fewer good customers wrongly declined for the same number of criminals caught.</strong> A wrongly declined customer is a real cost too, in complaints and abandoned spending.</p>
+    </article>
+  </div>
+
+  <div class="call">
+    <b>The one sentence that separates them.</b> In fraud, the world eventually tells you whether you were right: a chargeback arrives within days and says what actually happened. In financial crime, nobody ever tells you. All you learn is what your own analyst decided, which means the system can only get better at agreeing with itself.
+  </div>
+</div>
+
+<!-- ========== HEAD TO HEAD ========== -->
+<div class="panel" id="p-comp" hidden>
+  <h2 class="sh">Head to head</h2>
+  <p class="lede">Eight dimensions. Each one opens up. The badge on the right says who wins that dimension and the reasoning is inside.</p>
+  <div id="dims"></div>
+</div>
+
+<!-- ========== NUMBERS ========== -->
+<div class="panel" id="p-nums" hidden>
+  <h2 class="sh">The numbers, with their labels</h2>
+  <p class="lede">Every figure carries a label, because the assignment requires it. <span class="chip d">Disclosed</span> the company reported it. <span class="chip p">Proxy</span> we computed it from disclosed figures. <span class="chip s">Assumption</span> a bounded guess we justify. An assumption is not a lie, but it is not a fact either, and the difference decides how hard we can lean on it.</p>
+  <div class="nums" id="nums"></div>
+  <figure>
+    <figcaption>Size of the pool each vertical is aimed at</figcaption>
+    <div class="fsub">Dollars in millions per year, against total noninterest expense of 95,640.</div>
+    <div class="chart" id="c-size"></div>
+    <div class="legend"><span><i style="background:var(--A)"></i>Candidate A</span><span><i style="background:var(--D)"></i>Candidate D</span></div>
+  </figure>
+  <div class="call warn">
+    <b>Read that chart carefully, it flatters D.</b> D's pool is a real audited line item. But the amount AI could actually move is a <em>counterfactual</em>: it is the deterioration that did not happen, estimated at $438m to $985m a year, and every step of that is a Scenario Assumption. A counterfactual cannot be audited. That goes on our first slide, not in a footnote.
+  </div>
+  <figure>
+    <figcaption>Operating losses, the audited line D is aimed at</figcaption>
+    <div class="fsub">Dollars in millions. Defined in the 10-K glossary as primarily fraud losses on deposit accounts and cards.</div>
+    <div class="chart" id="c-ops"></div>
+  </figure>
+</div>
+
+<!-- ========== COURSE ========== -->
+<div class="panel" id="p-course" hidden>
+  <h2 class="sh">What each choice commits us to</h2>
+  <p class="lede">We do not just write Canvas 1. Five more follow, one a week, and the final project re-grades all six together. So the question is not which wins this week, it is which carries a semester.</p>
+  <figure>
+    <figcaption>How each vertical scores on each canvas</figcaption>
+    <div class="fsub">Scored out of 10 by a specialist per canvas. A leads overall, but read the caveat below.</div>
+    <div class="chart" id="c-canvas"></div>
+    <div class="legend"><span><i style="background:var(--A)"></i>Candidate A</span><span><i style="background:var(--D)"></i>Candidate D</span></div>
+  </figure>
+  <div class="call a">
+    <b>Why A's lead is smaller than it looks.</b> Five of the six deep research tasks we commissioned were about A. Nothing was commissioned for D. So part of A's score reflects where we happened to look, not where the value is. A's two biggest wins are on the two canvases our research was built to serve.
+  </div>
+  <div class="two">
+    <article class="card a">
+      <span class="tag a">If we pick A</span>
+      <ul class="pts">
+        <li><strong>C2 Defensibility:</strong> mostly a negative finding. Our own document already withdrew the claim that A builds a proprietary advantage.</li>
+        <li><strong>C3 Sourcing:</strong> strong. Vendors resell the same capability to smaller banks through core processors.</li>
+        <li><strong>C4 Learning:</strong> argue a codified standard of what a defensible decision looks like, not a data advantage.</li>
+        <li><strong>C5 Authority:</strong> the richest material we have. May a machine close an alert with no human record?</li>
+        <li><strong>C6 Synthesis:</strong> hard. A Board reads a $38m prize as a rounding error.</li>
+      </ul>
+    </article>
+    <article class="card d">
+      <span class="tag d">If we pick D</span>
+      <ul class="pts">
+        <li><strong>C2 Defensibility:</strong> our strongest canvas. A real feedback loop, plus a measured saturation finding.</li>
+        <li><strong>C3 Sourcing:</strong> a genuine three way choice. Build, buy, or co-own with six other banks.</li>
+        <li><strong>C4 Learning:</strong> the label is free and fast, so operating experience genuinely compounds.</li>
+        <li><strong>C5 Authority:</strong> thinner than A. The EU AI Act exempts fraud detection from its high risk tier.</li>
+        <li><strong>C6 Synthesis:</strong> easier. An audited line and a decision about who owns the data.</li>
+      </ul>
+    </article>
+  </div>
+</div>
+
+<!-- ========== DECIDE ========== -->
+<div class="panel" id="p-dec" hidden>
+  <h2 class="sh">Making the call</h2>
+  <div class="call"><b>Recommendation: D, and it is close.</b> If someone on the team argues hard for A, they are not being unreasonable. A has better material for one canvas and more research already done. The case for D rests on three things: the money is audited, the feedback is real, and the sourcing question is genuinely interesting.</div>
+
+  <h3 style="font-family:var(--fd);font-size:17px;margin:26px 0 12px">The honest case for A</h3>
+  <p class="lede" style="margin-bottom:14px">Written as if we believed it, because someone should argue this in the room. A has the only genuinely contested authority question in the whole set: whether a machine may close a sanctions alert without leaving a human record, who signs the legal filing that follows, and what happens to the legal protection that filing carries. That is a decision a Board can actually take this year. D has nothing comparable. A also has five of our six research tasks already done, so we would start Canvas 1 with more evidence in hand.</p>
+
+  <h3 style="font-family:var(--fd);font-size:17px;margin:26px 0 12px">What would change the answer</h3>
+  <div class="tw"><table>
+    <thead><tr><th>If we find this</th><th>Then</th></tr></thead>
+    <tbody>
+      <tr><td>JPMorgan Chase already buys a named third party fraud platform</td><td class="win-a">D's build versus buy question weakens. Reconsider A.</td></tr>
+      <tr><td>The CFPB extends bank liability to scams where the customer was tricked</td><td class="win-d">D's pool grows and the decision gets more urgent. D strengthens.</td></tr>
+      <tr><td>A regulator publishes a clear rule on machine closing of alerts</td><td class="win-a">A's authority canvas gets a real answer instead of a deferral. A strengthens.</td></tr>
+      <tr><td>Fraud vendors ship the same capability to hundreds of small banks</td><td class="win-a">D's advantage dissipates the same way A's does. The two converge.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 style="font-family:var(--fd);font-size:17px;margin:26px 0 12px">Do these before we lock it in</h3>
+  <ol class="todo">
+    <li><strong>Find out whether JPMorgan Chase uses a named fraud vendor.</strong> Our search for six of them returned nothing, which means nobody looked, not that the bank builds its own. Careers site, vendor press releases, trade press. <em>About 30 minutes, and it is the single highest value task on this list.</em></li>
+    <li><strong>Read D2 and D6 in the candidate document.</strong> That is where the money argument lives and where it is weakest. Whoever presents needs to have read it.</li>
+    <li><strong>Have one person argue for A in the meeting.</strong> Not for balance. Because whichever we drop becomes our rejected alternative in the final project, and a rejected alternative nobody argued for reads as a straw man.</li>
+    <li><strong>Agree the citation style now.</strong> APA or Chicago. Every deliverable has to use one consistently and changing it later is painful.</li>
+  </ol>
+
+  <h3 style="font-family:var(--fd);font-size:17px;margin:30px 0 12px">Questions we will get, and honest answers</h3>
+  <div id="qa"></div>
+</div>
+
+</main>
+
+<footer class="wrap">
+  <p><b>Where this comes from.</b> 419 sources, 1,380 claims, every one traceable to a URL. Numbers were checked by reviewers instructed to refute rather than confirm, and roughly two thirds of the first batch needed correcting, which is why nothing here is stated without a label. The full detail sits in <span style="font-family:var(--fm);font-size:12.5px">jpmcResearch/candidateOpportunities.md</span> and <span style="font-family:var(--fm);font-size:12.5px">chooseTheVertical.md</span>.</p>
+  <p style="margin-top:12px"><b>This recommendation changed once already.</b> An earlier version recommended A. It flipped to D when three of A's supporting facts failed a check against our own evidence. That is on the record rather than quietly edited, and it is the kind of thing the final project explicitly rewards.</p>
+</footer>
+
+<script>
+const DIMS=[
+{t:'The job that changes',w:'d',why:'Canvas 1 is graded on describing a specific job, a specific workflow, and how many times it happens. A vague job costs marks.',
+ a:{p:['Four named human tiers touch every KYC file: gather documents, draft, check, approve. The alert queue is a six step review.','We have a real volume figure. In 2022 roughly <strong>3,000 people handled 155,000 files</strong>, about 52 files each per year.'],g:'The best described job in the whole set. We can name the roles and count the work.',b:'The figure is from 2022 and was given as a projection, not a result.'},
+ d:{p:['Two roles: the analyst who tunes the scoring rules, and the handler who rules on disputed payments.','<strong>Volume per person is not disclosed anywhere.</strong> We would have to build a public stand in figure and label it as one.'],g:'The workflow itself is easy to describe and easy for a Board to picture.',b:'No disclosed volume per person. This is a genuine gap and it costs marks on Canvas 1.'},
+ v:'A wins this one and it is not close. We can describe A\'s job with real numbers attached. For D we would be building estimates. That matters for the 30 point block on Canvas 1.'},
+
+{t:'How big the prize is',w:'d',why:'Canvas 1 wants magnitude, how often it recurs, and what happens if you get it wrong. A number built on a chain of guesses is worth less than a smaller number built on an audited one.',
+ a:{p:['Central case <strong>$38m a year</strong>, range $13m to $82m. That is <strong>0.04 percent</strong> of what the bank spends.','Every step is a Scenario Assumption. The estimate was revised downward twice under review.','After funding the non-AI option first, the part AI could still address is <strong>$9m to $55m</strong>.'],g:'Honest about its own weakness.',b:'A Board reads $38m against $95.6bn of expense as a rounding error, and they would be right.'},
+ d:{p:['The pool is <strong>$1,292m</strong> of operating losses, an audited line in the annual report. That is <strong>1.35 percent</strong> of expense, roughly forty times A.','The line fell $125m year on year.','What AI plausibly holds back is estimated at <strong>$438m to $985m a year</strong>, and that estimate is a Scenario Assumption.'],g:'The base is audited. Nobody can argue about whether the pool exists.',b:'The benefit is a deterioration that did not happen. You cannot audit something that did not occur.'},
+ v:'D, on the base. A real audited line beats a chain of five assumptions, even when the thing you claim to move is itself estimated. But do not overclaim: D\'s benefit figure is as soft as A\'s.'},
+
+{t:'What we would do without AI',w:'d',why:'Canvas 1 explicitly requires the credible non-AI alternative. Most teams skip it. Noticing when the boring option wins is exactly what earns marks here.',
+ a:{p:['Two levers. Move the work offshore, where the bank already employs <strong>over 80,000 people</strong> in India and the Philippines. Or change the policy so files are only rebuilt when something actually changes.','The policy change alone saves <strong>$32m to $66m</strong>. The entire AI prize is $13m to $65m.'],g:'A genuinely strong finding, and being honest about it earns marks.',b:'<strong>The non-AI option beats the AI option on half the workflow.</strong> That is very hard to recover from in an AI strategy assignment.'},
+ d:{p:['The disclosed headline result came from a <strong>rule</strong>, not a model: blocking higher risk payments that started on social media, plus passkeys and in-app checks.','So the non-AI lever is strong here too, and we must say so.'],g:'Same honesty available, without the AI case collapsing.',b:'We would be conceding that the best publicly known result in this area was not achieved with AI.'},
+ v:'D, narrowly. Both have a strong non-AI alternative and we should say so in both cases. The difference is that A\'s non-AI option beats AI outright and costs less, whereas D\'s rule and D\'s model do different jobs and can sit alongside each other.'},
+
+{t:'What AI actually changes',w:'d',why:'This sits inside the 40 point block. It has to be specific to a workflow step, not a general claim that AI helps.',
+ a:{p:['Drafts the KYC record from public registries so the human edits rather than writes. Writes the investigator summary on an alert.','For this to pay, the model needs an error rate below <strong>27 to 40 percent</strong>.','Measured error rates for comparable tools sit at <strong>17 to 33 percent</strong>. Those bands overlap.'],g:'We can state the break even precisely, which most teams cannot.',b:'The break even overlaps the technology\'s measured error range. On public evidence we cannot say it clears the bar.'},
+ d:{p:['At the scoring step a model replaces a fixed threshold. The gain is precision.','<strong>Fewer good customers declined for the same number of criminals caught.</strong> A wrongly declined customer costs complaints and lost spending.'],g:'The value shows up in two places at once: lower losses and fewer annoyed customers.',b:'The bank publishes no numbers attributing any fraud result to AI. The attribution is ours to argue.'},
+ v:'D. A\'s honest arithmetic shows the technology may not clear its own bar. D\'s mechanism is a smaller claim but it survives contact with the evidence.'},
+
+{t:'Who keeps the money',w:'d',why:'This is the sentence the 40 point block is graded on: does the benefit reach the bank, or leak away to customers, vendors, competitors or staff?',
+ a:{p:['The saving is people\'s time. The bank\'s own record shows that kind of saving being <strong>redeployed rather than banked</strong>.','Dimon said the reported four hours saved per week is deliberately <strong>not</strong> counted as reduced headcount and is not in any financial case.'],g:'We can prove the leak with the firm\'s own words, which is strong evidence.',b:'We would be proving that our own opportunity does not reach the P&L.'},
+ d:{p:['A fraud loss avoided is a loss <strong>not booked</strong>. It is subtracted from an audited line by the accounting itself, not by a management decision.','Nobody can redeploy a loss that never happened.'],g:'The cleanest value capture argument available anywhere in the set.',b:'It only works if we can attribute the movement to AI, and the bank publishes no such attribution.'},
+ v:'D, clearly, and this is the dimension that decided the recommendation. Every other candidate produces a saving that management can choose to spend again. D produces one that the accounting removes automatically.'},
+
+{t:'Whether the advantage lasts',w:'d',why:'Canvas 2, worth 15 points in the final. It asks what gets better with use and why a rival could not copy it.',
+ a:{p:['A loop exists: every alert a human closes trains next year\'s model.','But the label is only a record of <strong>what an analyst decided</strong>, not what was true. The system learns to agree with itself.','It is also blind to alerts that were never raised.','<strong>Our own document withdrew the claim that this is a proprietary advantage.</strong> Every peer bank has the same thing.'],g:'Being able to show that a claimed moat is only a scale economy is itself worth marks.',b:'Canvas 2\'s headline question would be answered "we have no learning advantage."'},
+ d:{p:['A chargeback is <strong>ground truth</strong>: it tells you what actually happened, not what somebody thought.','It arrives in days, costs nothing, and is unambiguous.','Compare: credit risk takes 12 to 24 months to learn if a loan was bad. This takes days.'],g:'The only genuine ground truth label in the bank. This is a real, defensible Canvas 2.',b:'The adversary adapts, so the advantage needs permanent reinvestment. It is a treadmill, not a moat.'},
+ v:'D, and by the widest margin of any dimension. This is the one canvas where D beat A in the independent scoring, and it is worth 15 points. A cheap, fast, honest label is the scarcest thing in an AI strategy.'},
+
+{t:'Build, buy, or share it',w:'d',why:'Canvas 3, worth 15 points. It is much richer when there are three real options rather than two.',
+ a:{p:['Vendors already resell equivalent capability to smaller banks through the companies that run their core systems. Dimon named this mechanism himself.','So the choice is build or buy, and buying is available to everyone.'],g:'The dissipation argument is well evidenced and dated.',b:'A two way choice makes for a thinner canvas.'},
+ d:{p:['Three real options. Build it. Buy it from named vendors. Or <strong>co-own it</strong>.','JPMorgan Chase already part owns <strong>Early Warning Services</strong> with six other banks, which runs Zelle and moves $1.2 trillion.','It has already run <strong>Project Aikya</strong>, a shared learning fraud experiment with BNY, RBC and NVIDIA, where each bank trained locally and shared only encrypted updates.'],g:'A three way choice where the firm sits on both sides of one counterparty. Genuinely interesting.',b:'We have not yet confirmed whether the bank already buys a fraud platform. Open task.'},
+ v:'D. Build versus buy is a normal question. Build versus buy versus co-own with your competitors, when you already part own the network, is a much better canvas.'},
+
+{t:'Where the machine must stop',w:'a',why:'Canvas 5, worth 10 points. It needs a real contested question about what a machine may decide alone.',
+ a:{p:['The richest material we have. May a model close an alert with no human record? Who signs the legal filing that follows? Does the legal protection still apply?','<strong>Two cautions.</strong> A supervisory gap we relied on turned out not to exist. And a $348m penalty we used as the consequence anchor was for a different workflow, and that order was closed in March 2026.'],g:'A real, dated, legally live question a Board can actually decide.',b:'Two of the supporting facts failed checking. What is left is still good, but thinner than it first looked.'},
+ d:{p:['Thinner. The EU AI Act specifically <strong>exempts</strong> fraud detection from its high risk tier, which is good for deploying and bad for writing an authority canvas.','The live question is the CFPB possibly extending bank liability to scams.'],g:'A clean, dateable regulatory trigger to watch.',b:'Less to argue about. The authority boundary here is closer to obvious.'},
+ v:'A wins this one clearly, and it is the strongest argument for choosing A. If the team weights Canvas 5 heavily, A becomes defensible. It is worth 10 points, against 15 for the defensibility canvas that D wins.'}
+];
+
+const QA=[
+ ['Your own research says the deposit threat is thirty times bigger. Why are you not doing that?','Because a Board cannot decide anything about it this year. The standard is being written by four companies we do not control, our own product is not live, and the damage would be unattributable for several quarters. We traded size for a decision we can actually take, and we say so on the first slide rather than hiding it.'],
+ ['Is the benefit real, or are you funding something that did not happen?','It is a counterfactual, and we will not pretend otherwise. The pool is audited. The improvement we claim AI holds back is an estimate built on the disclosed attack growth rate. We label it as an assumption every time it appears.'],
+ ['Why not just hire 500 more people offshore?','For candidate A that question wins, and it is why we did not choose A. The bank already employs over 80,000 people in India and the Philippines and is still using that lever. For fraud, offshore labour does not help, because the decision happens in milliseconds during a card swipe.'],
+ ['If a chargeback is such a good signal, why does every bank not have this advantage?','They largely do. That is a saturation finding, not a moat, and we say so. The interesting question is not whether we have better data than a peer, it is whether the pattern that beats all of us individually can only be seen across several banks at once.'],
+ ['What does this actually cost to build?','We do not know. No filing discloses technology spend, AI spend, or a fraud technology line. We would ask management for the internal business case. Until then, every cost figure would be an assumption and we will not present one as a fact.'],
+ ['Your recommendation changed. Why should we trust this one?','Because it changed for a reason we can show you. Three facts holding up the earlier answer failed when checked against our own sources. The change is recorded rather than quietly edited, and we would rather be corrected now than in front of you.'],
+ ['Which competitor is furthest ahead here?','We do not know, and neither does anyone outside these firms. Public disclosure on fraud AI is marketing, not measurement. That is a critical unknown and we would validate it through vendor customer lists and hiring patterns rather than press releases.'],
+ ['What single piece of evidence would make you drop this?','If fraud vendors are shown to be shipping equivalent capability to hundreds of small banks, then our advantage dissipates the same way candidate A\'s does, and the case for building rather than buying collapses.'],
+ ['Is any of this actually AI, or is it just rules?','Fair challenge. The best publicly known result at this bank came from a rule about which payments are allowed, not from a model. Our claim is narrower: at the scoring step, a model beats a fixed threshold on precision. We are not claiming the rule was AI.'],
+ ['You have five people and one semester. Can you deliver this?','Yes, and the choice reflects that. The evidence base for fraud is thinner than for financial crime because of where we looked first. We have costed the gap at roughly a day of research, and it is the first thing on our list.']
+];
+
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const WL={a:'A wins',d:'D wins',tie:'Close'};
+
+document.getElementById('dims').innerHTML=DIMS.map((d,i)=>`
+<details class="dim"${i===0?' open':''}>
+  <summary><span class="dt">${d.t}</span><span class="dw ${d.w}">${WL[d.w]}</span><span class="caret">&#9656;</span></summary>
+  <div class="body">
+    <div class="why"><b>Why this matters.</b> ${d.why}</div>
+    <div class="sxs">
+      <section class="aa"><h4>Candidate A &middot; Financial crime</h4>
+        <ul class="pts">${d.a.p.map(x=>`<li>${x}</li>`).join('')}</ul>
+        <div class="sw good"><b>Strongest point</b>${d.a.g}</div>
+        <div class="sw bad"><b>Biggest problem</b>${d.a.b}</div>
+      </section>
+      <section class="dd"><h4>Candidate D &middot; Consumer fraud</h4>
+        <ul class="pts">${d.d.p.map(x=>`<li>${x}</li>`).join('')}</ul>
+        <div class="sw good"><b>Strongest point</b>${d.d.g}</div>
+        <div class="sw bad"><b>Biggest problem</b>${d.d.b}</div>
+      </section>
+    </div>
+    <div class="why" style="margin-bottom:0"><b>Verdict.</b> ${d.v}</div>
+  </div>
+</details>`).join('');
+
+document.getElementById('nums').innerHTML=[
+ ['A','Annual prize, central case','$38m','Scenario Assumption, 2026'],
+ ['A','As a share of firm expense','0.04%','Team Inference'],
+ ['A','Residual after the non-AI lever','$9-55m','Scenario Assumption'],
+ ['A','Break even error rate needed','27-40%','Public Proxy'],
+ ['A','Measured error rate of such tools','17-33%','Public Fact, 2025'],
+ ['D','Operating losses, audited','$1,292m','Disclosed, FY2025'],
+ ['D','As a share of firm expense','1.35%','Team Inference'],
+ ['D','Year on year change','-$125m','Disclosed, FY2025'],
+ ['D','Estimated deterioration held back','$438-985m','Scenario Assumption'],
+ ['D','Time for the truth to arrive','days','Public Fact']
+].map(n=>`<div class="num"><span class="l">${esc(n[1])}</span><div class="v ${n[0].toLowerCase()}">${esc(n[2])}</div><div class="m">Candidate ${n[0]} &middot; ${esc(n[3])}</div></div>`).join('');
+
+document.getElementById('qa').innerHTML=QA.map(q=>`<div class="qa"><div class="q">${esc(q[0])}</div><div class="a">${esc(q[1])}</div></div>`).join('');
+
+/* charts */
+function tipEl(h){const d=document.createElement('div');d.className='tip';h.appendChild(d);return d}
+function wire(h){const t=tipEl(h);h.querySelectorAll('[data-t]').forEach(el=>{
+ el.addEventListener('mouseenter',()=>{const r=el.getBoundingClientRect(),b=h.getBoundingClientRect();t.innerHTML=el.dataset.t;t.style.left=(r.left-b.left+r.width/2)+'px';t.style.top=(r.top-b.top)+'px';t.classList.add('on')});
+ el.addEventListener('mouseleave',()=>t.classList.remove('on'))})}
+const cv=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+function hbar(id,items,fmt){
+ const h=document.getElementById(id),W=720,rh=34,PL=180,PR=92,PT=6,H=PT*2+items.length*rh;
+ const max=Math.max(...items.map(i=>i.v)),iw=W-PL-PR;let s='';
+ items.forEach((it,i)=>{const y=PT+i*rh,w=Math.max((it.v/max)*iw,2);
+  s+=`<text class="ax" x="${PL-10}" y="${y+rh/2+4}" text-anchor="end" style="font-size:11.5px">${esc(it.n)}</text>`;
+  s+=`<rect class="bar" x="${PL}" y="${y+6}" width="${w}" height="${rh-14}" rx="4" fill="${it.c}" data-t="${esc(it.n)}: ${fmt(it.v)}"/>`;
+  s+=`<text class="dl" x="${PL+w+9}" y="${y+rh/2+4}" fill="${it.c}">${fmt(it.v)}</text>`});
+ h.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Bar chart">${s}</svg>`;wire(h)}
+
+function grouped(id,cats,series){
+ const h=document.getElementById(id),W=720,H=250,PL=34,PR=14,PT=16,PB=52;
+ const iw=W-PL-PR,ih=H-PT-PB,max=10,gw=iw/cats.length,bw=Math.min(30,(gw-14)/2);
+ const y=v=>PT+ih-(v/max)*ih;let s='';
+ for(let i=0;i<=5;i++){const yy=PT+ih*i/5;s+=`<line class="gl" x1="${PL}" x2="${W-PR}" y1="${yy}" y2="${yy}"/>`}
+ s+=`<text class="ax" x="${PL-6}" y="${y(10)+4}" text-anchor="end">10</text><text class="ax" x="${PL-6}" y="${y(0)+4}" text-anchor="end">0</text>`;
+ cats.forEach((c,ci)=>{const gx=PL+ci*gw+(gw-bw*2-4)/2;
+  series.forEach((sr,si)=>{const v=sr.vals[ci],x=gx+si*(bw+4),yy=y(v);
+   s+=`<rect class="bar" x="${x}" y="${yy}" width="${bw}" height="${PT+ih-yy}" rx="4" fill="${sr.color}" data-t="${esc(c)} &middot; ${esc(sr.name)}: ${v} of 10"/>`;
+   s+=`<text class="dl" x="${x+bw/2}" y="${yy-5}" text-anchor="middle" fill="${sr.color}">${v}</text>`});
+  const parts=c.split(' ');
+  s+=`<text class="ax" x="${PL+ci*gw+gw/2}" y="${H-30}" text-anchor="middle">${esc(parts[0])}</text>`;
+  s+=`<text class="ax" x="${PL+ci*gw+gw/2}" y="${H-17}" text-anchor="middle" style="font-size:9.5px">${esc(parts.slice(1).join(' '))}</text>`});
+ h.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Grouped bar chart">${s}</svg>`;wire(h)}
+
+function draw(){
+ const A=cv('--A'),D=cv('--D');
+ hbar('c-size',[
+  {n:'D: operating losses pool',v:1292,c:D},
+  {n:'D: estimated AI effect, high',v:985,c:D},
+  {n:'D: estimated AI effect, low',v:438,c:D},
+  {n:'A: whole prize, high end',v:82,c:A},
+  {n:'A: whole prize, central',v:38,c:A},
+  {n:'A: residual AI part, low',v:9,c:A}],v=>'$'+v.toLocaleString()+'m');
+ hbar('c-ops',[
+  {n:'FY2025',v:1292,c:D},{n:'FY2024',v:1417,c:D},{n:'FY2023',v:1228,c:D}],v=>'$'+v.toLocaleString()+'m');
+ grouped('c-canvas',
+  ['C1 Opportunity','C2 Defensibility','C3 Sourcing','C4 Learning','C5 Authority','C6 Synthesis'],
+  [{name:'Candidate A',color:A,vals:[8,8,10,9,10,9]},{name:'Candidate D',color:D,vals:[7,9,8,7,6,8]}]);
+}
+draw();
+matchMedia('(prefers-color-scheme:dark)').addEventListener('change',draw);
+
+/* tabs */
+document.querySelectorAll('nav.tabs button').forEach(b=>b.addEventListener('click',()=>{
+ document.querySelectorAll('nav.tabs button').forEach(x=>x.setAttribute('aria-selected',String(x===b)));
+ document.querySelectorAll('.panel').forEach(p=>p.hidden=p.id!==b.dataset.p);
+ window.scrollTo({top:0,behavior:'smooth'});
+ requestAnimationFrame(draw);
+}));
+</script>
+</body></html>

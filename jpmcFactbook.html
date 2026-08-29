@@ -1,0 +1,649 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>:root{color-scheme:light dark}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+</head><body>
+<title>JPMorgan Chase Factbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --ground:#FCFCFB; --surface:#FFFFFF; --surface-2:#F5F4F1;
+  --ink:#1A1A17; --ink-2:#4A4943; --ink-3:#77756D;
+  --rule:#E4E2DC; --rule-2:#D2CFC7;
+  --accent:#9A5410; --accent-ink:#C06A12;
+  --s1:#C06A12; --s2:#2E5FD0; --s3:#A02B93; --s4:#0092A8;
+  --ok:#2F6B3F; --ok-bg:#E8F0E9; --warn:#8A6114; --warn-bg:#F6EEDC; --none:#6E6C66; --none-bg:#EEEDE9;
+  --focus:#2E5FD0;
+  --shadow:0 1px 2px rgba(26,26,23,.05),0 4px 14px -6px rgba(26,26,23,.10);
+  --fd:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;
+  --fb:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --fm:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#161719; --surface:#1D1F22; --surface-2:#25272B;
+    --ink:#EAE9E4; --ink-2:#B7B5AE; --ink-3:#8B8983;
+    --rule:#2E3136; --rule-2:#3C4046;
+    --accent:#E09A45; --accent-ink:#D07E20;
+    --s1:#D07E20; --s2:#4B77E8; --s3:#B93FA8; --s4:#0EA3B8;
+    --ok:#79B98C; --ok-bg:#1E2A22; --warn:#D6A748; --warn-bg:#2B2418; --none:#8B8983; --none-bg:#232528;
+    --focus:#7E9CF5;
+    --shadow:0 1px 2px rgba(0,0,0,.30),0 4px 16px -6px rgba(0,0,0,.45);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#161719; --surface:#1D1F22; --surface-2:#25272B;
+  --ink:#EAE9E4; --ink-2:#B7B5AE; --ink-3:#8B8983;
+  --rule:#2E3136; --rule-2:#3C4046;
+  --accent:#E09A45; --accent-ink:#D07E20;
+  --s1:#D07E20; --s2:#4B77E8; --s3:#B93FA8; --s4:#0EA3B8;
+  --ok:#79B98C; --ok-bg:#1E2A22; --warn:#D6A748; --warn-bg:#2B2418; --none:#8B8983; --none-bg:#232528;
+  --focus:#7E9CF5;
+  --shadow:0 1px 2px rgba(0,0,0,.30),0 4px 16px -6px rgba(0,0,0,.45);
+}
+
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--fb);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,.ui{font-family:var(--fd)}
+h1,h2,h3{text-wrap:balance;margin:0}
+a{color:var(--accent);text-underline-offset:2px}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ---------- masthead ---------- */
+.mast{border-bottom:1px solid var(--rule);background:var(--surface)}
+.mast-in{max-width:1180px;margin:0 auto;padding:28px 24px 22px}
+.eyebrow{font-family:var(--fd);font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+.mast h1{font-size:clamp(28px,4.4vw,44px);font-weight:800;letter-spacing:-.02em;line-height:1.05;margin:8px 0 10px}
+.mast p{margin:0;max-width:66ch;color:var(--ink-2);font-size:15px}
+.cutoff{display:inline-flex;align-items:center;gap:7px;margin-top:14px;font-family:var(--fm);font-size:12px;color:var(--ink-2);background:var(--surface-2);border:1px solid var(--rule);padding:5px 10px;border-radius:3px}
+.cutoff b{color:var(--ink);font-weight:600}
+
+/* ---------- control bar ---------- */
+.bar{position:sticky;top:0;z-index:40;background:var(--surface);border-bottom:1px solid var(--rule);box-shadow:var(--shadow)}
+.bar-in{max-width:1180px;margin:0 auto;padding:10px 24px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.search{flex:1 1 260px;min-width:200px;position:relative}
+.search input{width:100%;font-family:var(--fd);font-size:14px;padding:9px 12px 9px 32px;border:1px solid var(--rule-2);border-radius:4px;background:var(--ground);color:var(--ink)}
+.search input::placeholder{color:var(--ink-3)}
+.search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--ink-3)}
+.seg{display:flex;border:1px solid var(--rule-2);border-radius:4px;overflow:hidden}
+.seg button{font-family:var(--fd);font-size:12px;font-weight:600;padding:8px 11px;background:var(--ground);color:var(--ink-2);border:0;border-right:1px solid var(--rule-2);cursor:pointer}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--ground)}
+.hits{font-family:var(--fm);font-size:12px;color:var(--ink-3);white-space:nowrap}
+
+/* ---------- layout ---------- */
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px 80px;display:grid;grid-template-columns:190px 1fr;gap:40px;align-items:start}
+@media (max-width:900px){.wrap{grid-template-columns:1fr;gap:0}.rail{display:none}}
+.rail{position:sticky;top:70px;padding-top:32px}
+.rail a{display:block;font-family:var(--fd);font-size:13px;color:var(--ink-2);text-decoration:none;padding:5px 0 5px 11px;border-left:2px solid var(--rule);line-height:1.35}
+.rail a:hover{color:var(--ink);border-left-color:var(--rule-2)}
+.rail a.on{color:var(--accent);border-left-color:var(--accent);font-weight:600}
+main{padding-top:32px;min-width:0}
+
+section{margin-bottom:52px;scroll-margin-top:74px}
+.sec-h{display:flex;align-items:baseline;gap:12px;padding-bottom:9px;border-bottom:2px solid var(--ink);margin-bottom:6px}
+.sec-n{font-family:var(--fm);font-size:12px;font-weight:600;color:var(--accent)}
+.sec-h h2{font-size:21px;font-weight:700;letter-spacing:-.01em}
+.lede{color:var(--ink-2);font-size:15.5px;max-width:68ch;margin:14px 0 22px}
+.note{font-size:14px;color:var(--ink-2);background:var(--surface-2);border-left:3px solid var(--rule-2);padding:11px 14px;margin:18px 0;max-width:70ch}
+.note b{color:var(--ink)}
+.note.flag{border-left-color:var(--accent-ink)}
+
+/* ---------- stat tiles ---------- */
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:12px;margin:20px 0}
+.tile{background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:14px 15px 12px;position:relative}
+.tile .lab{font-family:var(--fd);font-size:11.5px;font-weight:600;color:var(--ink-3);letter-spacing:.03em;line-height:1.3;display:block;margin-bottom:7px}
+.tile .val{font-family:var(--fm);font-size:23px;font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.1;color:var(--ink)}
+.tile .val .u{font-size:13px;color:var(--ink-3);font-weight:400}
+.tile .per{font-family:var(--fm);font-size:11px;color:var(--ink-3);margin-top:5px}
+.tile .row{display:flex;justify-content:space-between;align-items:flex-end;gap:8px;margin-top:9px}
+
+/* ---------- evidence chips ---------- */
+.chip{display:inline-flex;align-items:center;gap:4px;font-family:var(--fd);font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:2px 6px;border-radius:2px;white-space:nowrap}
+.chip::before{content:"";width:5px;height:5px;border-radius:50%;flex:none}
+.chip.d{color:var(--ok);background:var(--ok-bg)}.chip.d::before{background:var(--ok)}
+.chip.p{color:var(--warn);background:var(--warn-bg)}.chip.p::before{background:var(--warn)}
+.chip.n{color:var(--none);background:var(--none-bg)}.chip.n::before{background:var(--none)}
+
+/* ---------- copy button ---------- */
+.cp{font-family:var(--fd);font-size:10.5px;font-weight:600;color:var(--ink-3);background:transparent;border:1px solid var(--rule);border-radius:3px;padding:3px 6px;cursor:pointer;white-space:nowrap}
+.cp:hover{color:var(--ink);border-color:var(--rule-2);background:var(--surface-2)}
+.cp.done{color:var(--ok);border-color:var(--ok)}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto;border:1px solid var(--rule);border-radius:5px;background:var(--surface);margin:18px 0}
+table{border-collapse:collapse;width:100%;font-size:14px}
+caption{text-align:left;font-family:var(--fd);font-size:13px;font-weight:600;color:var(--ink-2);padding:11px 14px 0}
+th,td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--rule);vertical-align:middle}
+thead th{font-family:var(--fd);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);background:var(--surface-2);position:sticky;top:0;white-space:nowrap}
+td.n,th.n{text-align:right;font-family:var(--fm);font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:var(--surface-2)}
+tr.tot td{font-weight:600;background:var(--surface-2)}
+td .mn{font-family:var(--fd);font-size:14px}
+.src{font-family:var(--fm);font-size:11px;color:var(--ink-3)}
+.src a{color:var(--ink-3)}
+
+/* ---------- charts ---------- */
+figure{margin:22px 0;background:var(--surface);border:1px solid var(--rule);border-radius:5px;padding:16px 16px 12px}
+figcaption{font-family:var(--fd);font-size:13px;font-weight:600;color:var(--ink);margin-bottom:2px}
+.fsub{font-family:var(--fd);font-size:12px;color:var(--ink-3);margin-bottom:14px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px;font-family:var(--fd);font-size:12px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:11px;height:11px;border-radius:2px;display:inline-block;flex:none}
+.chart{position:relative}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.gridline{stroke:var(--rule);stroke-width:1}
+.axis{fill:var(--ink-3);font-family:'IBM Plex Mono',monospace;font-size:10.5px}
+.dlab{fill:var(--ink-2);font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:500}
+.bar{transition:opacity .12s}
+.chart:hover .bar{opacity:.42}
+.chart .bar:hover,.chart .bar.hot{opacity:1}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--ground);font-family:var(--fm);font-size:11.5px;padding:6px 9px;border-radius:3px;white-space:nowrap;opacity:0;transform:translate(-50%,-118%);transition:opacity .1s;z-index:5;line-height:1.45}
+.tip.on{opacity:1}
+
+/* ---------- misc ---------- */
+.hide{display:none!important}
+.empty{font-family:var(--fd);font-size:14px;color:var(--ink-3);padding:26px 0;text-align:center}
+footer{max-width:1180px;margin:0 auto;padding:26px 24px 60px;border-top:1px solid var(--rule);font-size:13.5px;color:var(--ink-2)}
+footer p{max-width:72ch}
+.kbd{font-family:var(--fm);font-size:11px;border:1px solid var(--rule-2);border-bottom-width:2px;border-radius:3px;padding:1px 5px;color:var(--ink-2)}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(14px);background:var(--ink);color:var(--ground);font-family:var(--fd);font-size:13px;padding:9px 16px;border-radius:4px;opacity:0;transition:all .18s;z-index:99;pointer-events:none;max-width:90vw}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+
+<header class="mast">
+  <div class="mast-in">
+    <div class="eyebrow">94-804 AI Strategy &middot; Team reference</div>
+    <h1>JPMorgan Chase Factbook</h1>
+    <p>Every figure this team is allowed to use, with the period it belongs to, how trustworthy it is, and the filing it came from. Search it, filter it by evidence quality, and copy any number with its citation already attached.</p>
+    <div class="cutoff">Public evidence current through <b>2026-08-28</b> &middot; latest reported period <b>2Q26</b></div>
+  </div>
+</header>
+
+<div class="bar">
+  <div class="bar-in">
+    <div class="search">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="7" cy="7" r="4.5"/><path d="M10.5 10.5 14 14"/></svg>
+      <input id="q" type="search" placeholder="Search any metric: deposits, fraud, CET1, headcount&hellip;" aria-label="Search metrics">
+    </div>
+    <div class="seg" role="group" aria-label="Filter by evidence quality">
+      <button data-f="all" aria-pressed="true">All</button>
+      <button data-f="d" aria-pressed="false">Disclosed</button>
+      <button data-f="p" aria-pressed="false">Proxy</button>
+    </div>
+    <div class="hits" id="hits"></div>
+  </div>
+</div>
+
+<div class="wrap">
+  <nav class="rail" aria-label="Sections">
+    <a href="#glance" class="on">At a glance</a>
+    <a href="#pnl">Income statement</a>
+    <a href="#expense">Where money goes</a>
+    <a href="#segments">Four segments</a>
+    <a href="#balance">Balance sheet</a>
+    <a href="#capital">Capital</a>
+    <a href="#risk">Risk and fraud</a>
+    <a href="#scale">Operating scale</a>
+    <a href="#peers">Against peers</a>
+    <a href="#returns">Shareholder returns</a>
+    <a href="#gaps">What is missing</a>
+  </nav>
+
+  <main>
+
+  <!-- ============ GLANCE ============ -->
+  <section id="glance">
+    <div class="sec-h"><span class="sec-n">01</span><h2>The firm at a glance</h2></div>
+    <p class="lede">JPMorgan Chase is the largest bank in the United States by assets. It does two different jobs under one roof. It is a retail bank holding the accounts, cards and mortgages of ordinary households. It is also a wholesale bank that trades securities, advises companies on takeovers, moves corporate cash worldwide, and manages money for institutions and wealthy families.</p>
+    <div class="tiles" id="tiles"></div>
+    <div class="note"><b>How a bank makes money.</b> Two ways, and they behave differently. <b>Spread income</b> is the gap between what the bank earns lending money out and what it pays to hold deposits. It rises and falls with interest rates, which the bank does not control. <b>Fee income</b> is charged for doing something: advising on a deal, managing a fund, processing a payment. It is steadier but has to be won each time. In FY2025 the split was roughly 52 percent spread to 48 percent fee.</div>
+  </section>
+
+  <!-- ============ P&L ============ -->
+  <section id="pnl">
+    <div class="sec-h"><span class="sec-n">02</span><h2>Income statement</h2></div>
+    <p class="lede">Three years of revenue, expense and profit. Two bases appear throughout. <b>Reported</b> follows standard accounting rules. <b>Managed</b> adds back a tax adjustment so that tax-exempt lending can be compared with ordinary lending. The firm runs its business on the managed basis, so most segment reporting uses it.</p>
+    <figure>
+      <figcaption>Revenue and expense, three years</figcaption>
+      <div class="fsub">Dollars in millions, reported basis. Revenue grew 15.4 percent over two years, expense grew 9.7 percent.</div>
+      <div class="chart" id="c-rev"></div>
+      <div class="legend" id="l-rev"></div>
+    </figure>
+    <div class="tw" id="t-pnl"></div>
+    <div class="tw" id="t-ratio"></div>
+  </section>
+
+  <!-- ============ EXPENSE ============ -->
+  <section id="expense">
+    <div class="sec-h"><span class="sec-n">03</span><h2>Where the money goes</h2></div>
+    <p class="lede">Noninterest expense is what it costs to run the bank, excluding the interest it pays out. Compensation is 57 percent of it. The line most people reach for when arguing about technology investment is the one that needs the most care.</p>
+    <figure>
+      <figcaption>Noninterest expense by component, FY2025</figcaption>
+      <div class="fsub">Dollars in millions. Total 95,640.</div>
+      <div class="chart" id="c-exp"></div>
+    </figure>
+    <div class="note flag"><b>A trap worth knowing before anyone cites it.</b> The line called "Technology, communications and equipment" grew 12.2 percent in FY2025, which looks like accelerating technology investment. It is not. That line also contains depreciation on cars the bank leases out, which was 2,418 million dollars in FY2025 against 1,685 million in FY2024. Strip that out and real growth was 5.7 percent, which is <em>lower</em> than FY2024's adjusted 9.1 percent. There is also no disclosed technology budget anywhere in any filing. [Team Inference, Public Proxy, FY2025]</div>
+    <div class="tw" id="t-exp"></div>
+    <div class="tw" id="t-tech"></div>
+  </section>
+
+  <!-- ============ SEGMENTS ============ -->
+  <section id="segments">
+    <div class="sec-h"><span class="sec-n">04</span><h2>The four segments</h2></div>
+    <p class="lede">The bank reports as four businesses. The <b>overhead ratio</b> is expense divided by revenue, so lower is more efficient. The investment bank is both the largest earner and the most efficient. Asset and Wealth Management is the least efficient, because it is a people business.</p>
+    <figure>
+      <figcaption>Segment revenue, expense and profit, FY2025</figcaption>
+      <div class="fsub">Dollars in millions, managed basis. Each segment shown as revenue with expense overlaid.</div>
+      <div class="chart" id="c-seg"></div>
+      <div class="legend" id="l-seg"></div>
+    </figure>
+    <div class="tw" id="t-seg"></div>
+    <div class="note"><b>Verification performed.</b> The four segment revenues sum to 185,581 exactly, the four net income figures to 57,048 exactly, and the four expense figures to 95,640 exactly. All three ties are exact with no rounding residual. Recomputed independently, not taken on trust.</div>
+  </section>
+
+  <!-- ============ BALANCE ============ -->
+  <section id="balance">
+    <div class="sec-h"><span class="sec-n">05</span><h2>Balance sheet</h2></div>
+    <p class="lede">What the bank owns and owes. A bank's balance sheet is unusual: customer deposits are a liability, because the bank owes that money back, and loans are an asset. The loans to deposits ratio shows how much of the deposit base has been lent out.</p>
+    <div class="tw" id="t-bal"></div>
+  </section>
+
+  <!-- ============ CAPITAL ============ -->
+  <section id="capital">
+    <div class="sec-h"><span class="sec-n">06</span><h2>Regulatory capital</h2></div>
+    <p class="lede"><b>Common equity tier 1</b>, or CET1, is the highest quality capital a bank holds: ordinary shareholders' money that absorbs losses first. Regulators require it as a percentage of <b>risk weighted assets</b>, which is total assets adjusted so that riskier lending counts for more. The gap between what the bank holds and what it must hold is the buffer available for lending, buybacks and dividends.</p>
+    <div class="tw" id="t-cap"></div>
+    <div class="note"><b>Why this bank's requirement is higher than a small bank's.</b> JPMorgan Chase is designated a globally systemically important bank, which adds a surcharge on top of the base requirement, because a failure would damage the wider financial system. The surcharge is 2.5 percent under one calculation method and 4.5 percent under another.</div>
+  </section>
+
+  <!-- ============ RISK ============ -->
+  <section id="risk">
+    <div class="sec-h"><span class="sec-n">07</span><h2>Risk, credit costs and fraud</h2></div>
+    <p class="lede">Two different losses matter here. <b>Credit losses</b> happen when a borrower does not repay, and are measured as the net charge-off rate. <b>Operating losses</b> are a separate audited line that the 10-K glossary defines as primarily fraud losses on deposit accounts and cards. That second line matters to this project, because it is the only audited number that a fraud strategy would move directly.</p>
+    <figure>
+      <figcaption>Operating losses, primarily fraud on deposit accounts and cards</figcaption>
+      <div class="fsub">Dollars in millions, full year. This is an audited line item, not a modelled estimate.</div>
+      <div class="chart" id="c-ops"></div>
+    </figure>
+    <div class="note flag"><b>Why this line is strategically interesting.</b> A fraud loss avoided is a loss not booked. It is subtracted from an audited expense line by the accounting itself, not by a management choice. Every other cost-side AI opportunity in this project produces a headcount saving, and the firm's own record shows those savings being redeployed rather than banked. That asymmetry is the reason the team's recommended vertical moved to consumer fraud.</div>
+    <div class="tw" id="t-risk"></div>
+  </section>
+
+  <!-- ============ SCALE ============ -->
+  <section id="scale">
+    <div class="sec-h"><span class="sec-n">08</span><h2>Operating scale</h2></div>
+    <p class="lede">The size of the machine. Headcount growth has flattened sharply while the branch network has kept expanding, which is a deliberate strategy rather than an accident.</p>
+    <figure>
+      <figcaption>Employees and branches</figcaption>
+      <div class="fsub">Headcount grew 0.4 percent in FY2025 against 5.5 percent in FY2023. Branches grew throughout.</div>
+      <div class="chart" id="c-scale"></div>
+      <div class="legend" id="l-scale"></div>
+    </figure>
+    <div class="tw" id="t-scale"></div>
+  </section>
+
+  <!-- ============ PEERS ============ -->
+  <section id="peers">
+    <div class="sec-h"><span class="sec-n">09</span><h2>Against the peer group</h2></div>
+    <p class="lede">JPMorgan Chase is larger than the next two American banks combined on market value, and holds more deposits than any other. Note that investment banking fees are the one measure where the gap closes: Goldman Sachs and Morgan Stanley are close competitors there despite being a fraction of the size overall.</p>
+    <figure>
+      <figcaption>Total assets by firm</figcaption>
+      <div class="fsub">Dollars in millions, as of 2026-06-30. Pulled from each firm's own quarterly filing.</div>
+      <div class="chart" id="c-peer"></div>
+    </figure>
+    <div class="tw" id="t-peer"></div>
+  </section>
+
+  <!-- ============ RETURNS ============ -->
+  <section id="returns">
+    <div class="sec-h"><span class="sec-n">10</span><h2>Shareholder returns</h2></div>
+    <p class="lede">What the bank hands back to its owners. The dividend has risen sharply, up 41 percent per share over two years.</p>
+    <div class="tw" id="t-ret"></div>
+  </section>
+
+  <!-- ============ GAPS ============ -->
+  <section id="gaps">
+    <div class="sec-h"><span class="sec-n">11</span><h2>What is not here</h2></div>
+    <p class="lede">Silence is not zero. These are figures the research specifically looked for and could not find in public sources. Recording them protects anyone who assumes an absent number means the answer is nil.</p>
+    <div class="tw" id="t-gaps"></div>
+    <div class="note"><b>The most consequential gap.</b> No SEC filing discloses a total technology budget, capitalised internal-use software separately, or any AI-specific spend. Any statement about what JPMorgan Chase spends on AI is therefore an inference from something else, and must be labelled that way.</div>
+  </section>
+
+  <p class="empty hide" id="noresults">No metric matches that search.</p>
+
+  </main>
+</div>
+
+<footer>
+  <p><b>How to use this.</b> Every number carries two labels. The first says how sure we are. The second says where it came from. <span class="chip d">Disclosed</span> means the company printed it in the cited filing. <span class="chip p">Proxy</span> means the research team computed it from two or more disclosed numbers, so it is defensible but is not a company figure. Press <span class="kbd">Copy</span> on any figure and the number, its period, its label and its source URL go to your clipboard together, so nothing reaches a slide without its citation.</p>
+  <p style="margin-top:14px">Built from SEC filings, quarterly earnings supplements, Investor Day materials and regulator sources. 691 labelled figures gathered; 26 headline figures were independently re-checked against the primary filing by a reviewer instructed to refute rather than confirm, and all 26 were confirmed with no corrections. Public evidence current through 2026-08-28.</p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const K10='https://www.sec.gov/Archives/edgar/data/19617/000162828026008131/jpm-20251231.htm';
+const Q26='https://www.sec.gov/Archives/edgar/data/19617/000162828026054343/jpm-20260630.htm';
+const SUP='https://www.sec.gov/Archives/edgar/data/19617/000162828026048078/a2q26erfex992supplement.htm';
+const S1='#C06A12',S2='#2E5FD0',S3='#A02B93',S4='#0092A8';
+const cs=()=>getComputedStyle(document.documentElement);
+const col=n=>cs().getPropertyValue('--'+n).trim();
+
+/* ---------- data ---------- */
+const TILES=[
+ {lab:'Total assets',val:'5,015,069',u:'$m',per:'2026-06-30',ev:'d',src:Q26},
+ {lab:'Total net revenue',val:'182,447',u:'$m',per:'FY2025 reported',ev:'d',src:K10},
+ {lab:'Net income',val:'57,048',u:'$m',per:'FY2025',ev:'d',src:K10},
+ {lab:'Diluted earnings per share',val:'20.02',u:'$',per:'FY2025',ev:'d',src:K10},
+ {lab:'Return on tangible common equity',val:'20',u:'%',per:'FY2025',ev:'d',src:K10},
+ {lab:'Overhead ratio',val:'52',u:'%',per:'FY2025',ev:'d',src:K10},
+ {lab:'Total deposits',val:'2,713,700',u:'$m',per:'2026-06-30',ev:'d',src:Q26},
+ {lab:'Employees',val:'318,512',u:'',per:'2025-12-31',ev:'d',src:K10},
+ {lab:'CET1 ratio, standardized',val:'14.2',u:'%',per:'2026-06-30',ev:'d',src:Q26},
+ {lab:'Market capitalisation',val:'950.62',u:'$bn',per:'2026-08-28',ev:'p',src:'https://stockanalysis.com/stocks/jpm/market-cap/'},
+ {lab:'Operating losses, mainly fraud',val:'1,292',u:'$m',per:'FY2025',ev:'d',src:K10},
+ {lab:'Assets under management',val:'5,140',u:'$bn',per:'2026-06-30',ev:'d',src:Q26}
+];
+
+const T={
+ pnl:{cap:'Revenue and profit, three years. Dollars in millions.',
+  head:['Line','FY2025','FY2024','FY2023','Evidence','Source'],
+  rows:[
+   ['Net interest income','95,443','92,583','89,267','d',K10],
+   ['Noninterest revenue','87,004','84,973','68,837','d',K10],
+   ['Total net revenue, reported','182,447','177,556','158,104','d',K10],
+   ['Total net revenue, managed','185,581','180,593','162,366','d',K10],
+   ['Total noninterest expense','95,640','91,797','87,172','d',K10],
+   ['Net income','57,048','58,471','49,552','d',K10]]},
+ ratio:{cap:'Ratios, three years.',
+  head:['Ratio','FY2025','FY2024','FY2023','Evidence','Source'],
+  rows:[
+   ['Return on common equity','17%','18%','17%','d',K10],
+   ['Return on tangible common equity','20%','22%','21%','d',K10],
+   ['Return on assets','1.29%','1.43%','1.30%','d',K10],
+   ['Overhead ratio, reported','52%','52%','55%','d',K10],
+   ['Overhead ratio, managed','52%','51%','54%','d',K10],
+   ['Net yield on interest-earning assets','2.50%','2.63%','2.70%','d',K10]]},
+ exp:{cap:'Noninterest expense components. Dollars in millions.',
+  head:['Component','FY2025','FY2024','FY2023','Evidence','Source'],
+  rows:[
+   ['Compensation expense','54,487','51,357','46,465','d',K10],
+   ['Professional and outside services','12,356','11,057','10,235','d',K10],
+   ['Technology, communications and equipment','11,029','9,831','9,246','d',K10],
+   ['Other expense','6,776','9,552','12,045','d',K10],
+   ['Marketing','5,531','4,974','4,591','d',K10],
+   ['Occupancy expense','5,461','5,026','4,590','d',K10],
+   ['Total noninterest expense','95,640','91,797','87,172','d',K10]]},
+ tech:{cap:'The technology line, headline against adjusted. Dollars in millions.',
+  head:['Line','FY2025','FY2024','FY2023','Evidence','Source'],
+  rows:[
+   ['Technology line as reported','11,029','9,831','9,246','d',K10],
+   ['Less auto operating lease depreciation','2,418','1,685','1,778','d',K10],
+   ['Technology line adjusted','8,611','8,146','7,468','p',K10],
+   ['Growth, headline','12.2%','6.3%','—','p',K10],
+   ['Growth, adjusted','5.7%','9.1%','—','p',K10]]},
+ seg:{cap:'The four segments, FY2025, managed basis. Dollars in millions.',
+  head:['Segment','Revenue','Net income','Expense','Overhead','Employees','Evidence','Source'],
+  rows:[
+   ['Commercial and Investment Bank','78,454','27,761','38,216','49%','94,563','d',K10],
+   ['Consumer and Community Banking','76,029','18,245','40,267','53%','144,196','d',K10],
+   ['Asset and Wealth Management','24,073','6,522','15,332','64%','29,722','d',K10],
+   ['Corporate','7,025','4,520','1,825','—','50,031','d',K10],
+   ['Firmwide total','185,581','57,048','95,640','52%','318,512','d',K10]]},
+ bal:{cap:'Balance sheet. Dollars in millions.',
+  head:['Line','2026-06-30','2025-12-31','Evidence','Source'],
+  rows:[
+   ['Total assets','5,015,069','4,424,900','d',Q26],
+   ['Total deposits','2,713,700','—','d',Q26],
+   ['Total loans','1,542,462','1,493,429','d',SUP],
+   ['Total stockholders’ equity','374,598','362,438','d',Q26],
+   ['Preferred stock','—','20,045','d',K10],
+   ['Average tangible common equity','—','280,292','d',K10],
+   ['Loans to deposits ratio','57%','58%','d',SUP]]},
+ cap:{cap:'Regulatory capital and the requirement.',
+  head:['Ratio','2026-06-30','2025-12-31','2024-12-31','Requirement','Evidence','Source'],
+  rows:[
+   ['CET1 ratio, standardized','14.2%','14.6%','15.7%','11.5%','d',Q26],
+   ['CET1 ratio, advanced','14.2%','14.1%','15.8%','11.5%','d',Q26],
+   ['CET1 capital, dollars in millions','—','288,469','—','—','d',K10]]},
+ risk:{cap:'Credit and fraud losses.',
+  head:['Measure','FY2025','FY2024','FY2023','Evidence','Source'],
+  rows:[
+   ['Operating losses, dollars in millions','1,292','1,417','1,228','d',K10],
+   ['Net charge-off rate, firmwide','0.74%','0.68%','0.52%','d',K10],
+   ['Net charge-off rate, Card Services','3.34%','3.40%','3.40%','d',Q26]]},
+ scale:{cap:'Operating scale. Ordered 2023 to the most recent quarter.',
+  head:['Measure','2023','2024','2025','2Q26','Evidence','Source'],
+  rows:[
+   ['Employees','309,926','317,233','318,512','320,560','d',K10],
+   ['Branches','4,897','4,966','5,083','5,135','d',SUP],
+   ['Assets under management, $bn','3,422','4,045','4,791','5,140','d',K10],
+   ['Payments revenue, $m','17,818','18,085','19,331','5,296','d',K10],
+   ['Investment banking fees, $m','6,519','8,910','9,615','3,208','d',K10],
+   ['Engineers with AI coding assistants','—','—','over 40,000','—','d','https://www.jpmorganchase.com/content/dam/jpmc/jpmorgan-chase-and-co/investor-relations/documents/events/2025/jpmc-2025-investor-day/consumer-community-banking.pdf']]},
+ peer:{cap:'Peer comparison. Dollars in millions except market capitalisation.',
+  head:['Firm','Total assets','Total deposits','IB fees FY2025','Market cap, $bn','Evidence','Source'],
+  rows:[
+   ['JPMorgan Chase','5,015,069','2,713,700','9,735','950.62','d',Q26],
+   ['Bank of America','3,499,191','2,025,124','6,630','435.79','d','https://data.sec.gov/api/xbrl/companyconcept/CIK0000019617/us-gaap/Deposits.json'],
+   ['Citigroup','2,894,700','1,492,600','4,618','222.93','d','https://data.sec.gov/api/xbrl/companyconcept/CIK0000019617/us-gaap/Deposits.json'],
+   ['Wells Fargo','2,282,201','1,501,405','—','262.15','d','https://data.sec.gov/api/xbrl/companyconcept/CIK0000019617/us-gaap/Deposits.json'],
+   ['Goldman Sachs','2,127,711','557,955','9,348','313.06','d','https://data.sec.gov/api/xbrl/companyconcept/CIK0000019617/us-gaap/Deposits.json'],
+   ['Morgan Stanley','1,675,057','446,068','8,199','337.31','d','https://data.sec.gov/api/xbrl/companyconcept/CIK0000019617/us-gaap/Deposits.json']]},
+ ret:{cap:'Dividends and capital return.',
+  head:['Measure','FY2025','FY2024','FY2023','Evidence','Source'],
+  rows:[
+   ['Cash dividends declared per common share','$5.80','$4.80','$4.10','d',K10],
+   ['Common stock dividends declared, $m','16,060','13,786','12,055','d',K10],
+   ['Preferred stock dividends, $m','1,099','1,259','1,501','d',K10],
+   ['Dividends paid, cash flow statement, $m','16,625','14,783','13,463','d',K10],
+   ['Most recent quarterly dividend per share','$1.50','declared 2026-05-18','—','d',Q26]]},
+ gaps:{cap:'Looked for, not found in public sources.',
+  head:['Figure','Where we looked','Evidence','Source'],
+  rows:[
+   ['Total technology budget or AI-specific spend','FY2025 10-K, 10-Qs, earnings supplements. No filing discloses it.','n',K10],
+   ['Net interest margin as a named metric','The firm does not use the term. It publishes net yield on interest-earning assets instead.','n',K10],
+   ['Compensation split, salary against incentive','10-K income statement, expense discussion, Note 9.','n',K10],
+   ['Auto net revenue as a standalone line','Only a combined Card Services and Auto line is reported.','n',K10],
+   ['Number of ATMs','10-K, quarterly supplements, Investor Day decks.','n',K10],
+   ['Net stable funding ratio, numeric value','Filings state compliance with the 100 percent minimum but publish no value.','n',Q26],
+   ['Sub-line profitability for any CCB business','Only segment-level profitability is disclosed.','n',K10],
+   ['3Q26 results','Most recent filing is the 2Q26 10-Q filed 2026-08-06.','n',Q26]]}
+};
+
+/* ---------- render ---------- */
+const EV={d:'Disclosed',p:'Proxy',n:'Not retrieved'};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function chip(ev){return `<span class="chip ${ev}">${EV[ev]}</span>`}
+
+function tiles(){
+  document.getElementById('tiles').innerHTML=TILES.map(t=>{
+    const cite=`${t.lab}: ${t.val}${t.u?' '+t.u:''} (${t.per}) [${EV[t.ev]} Number] ${t.src}`;
+    return `<article class="tile srch" data-ev="${t.ev}" data-txt="${esc((t.lab+' '+t.per).toLowerCase())}">
+      <span class="lab">${esc(t.lab)}</span>
+      <div class="val">${esc(t.val)}${t.u?` <span class="u">${esc(t.u)}</span>`:''}</div>
+      <div class="row"><span class="per">${esc(t.per)}</span>${chip(t.ev)}</div>
+      <div class="row"><button class="cp" data-cite="${esc(cite)}">Copy with citation</button></div>
+    </article>`}).join('');
+}
+
+function table(id,key){
+  const t=T[key],nc=t.head.length-2;
+  const th=t.head.map((h,i)=>`<th class="${i>0&&i<nc?'n':''}">${esc(h)}</th>`).join('');
+  const rows=t.rows.map(r=>{
+    const ev=r[r.length-2],src=r[r.length-1],cells=r.slice(0,-2);
+    const cite=`${cells[0]}: ${cells.slice(1).join(' / ')} [${EV[ev]}] ${src}`;
+    const tds=cells.map((c,i)=>i===0
+      ?`<td><span class="mn">${esc(c)}</span></td>`
+      :`<td class="n">${esc(c)}</td>`).join('');
+    const isTot=/^(Firmwide total|Total noninterest expense)$/.test(cells[0]);
+    return `<tr class="srch${isTot?' tot':''}" data-ev="${ev}" data-txt="${esc(cells.join(' ').toLowerCase())}">${tds}
+      <td>${chip(ev)}</td>
+      <td class="src"><button class="cp" data-cite="${esc(cite)}">Copy</button> <a href="${esc(src)}" target="_blank" rel="noopener">source</a></td></tr>`;
+  }).join('');
+  document.getElementById(id).innerHTML=`<table><caption>${esc(t.cap)}</caption><thead><tr>${th}</tr></thead><tbody>${rows}</tbody></table>`;
+}
+
+/* ---------- charts ---------- */
+function tip(host){const d=document.createElement('div');d.className='tip';host.appendChild(d);return d}
+
+function barsGrouped(host,legendHost,series,cats,fmt){
+  const W=720,H=250,PL=58,PR=14,PT=14,PB=34;
+  const max=Math.max(...series.flatMap(s=>s.vals))*1.08;
+  const iw=W-PL-PR,ih=H-PT-PB;
+  const gw=iw/cats.length, bw=Math.min(46,(gw-16)/series.length);
+  const y=v=>PT+ih-(v/max)*ih;
+  let g='';
+  for(let i=0;i<=4;i++){const v=max*i/4,yy=y(v);
+    g+=`<line class="gridline" x1="${PL}" x2="${W-PR}" y1="${yy}" y2="${yy}"/><text class="axis" x="${PL-8}" y="${yy+3.5}" text-anchor="end">${fmt(v)}</text>`}
+  let b='';
+  cats.forEach((c,ci)=>{
+    const gx=PL+ci*gw+(gw-bw*series.length-2*(series.length-1))/2;
+    series.forEach((s,si)=>{
+      const v=s.vals[ci],x=gx+si*(bw+2),yy=y(v),h=PT+ih-yy;
+      b+=`<rect class="bar" x="${x}" y="${yy}" width="${bw}" height="${Math.max(h,1)}" rx="4" fill="${s.color}" data-t="${esc(c)} &middot; ${esc(s.name)}: ${v.toLocaleString()}"/>`;
+      if(ci===cats.length-1)b+=`<text class="dlab" x="${x+bw/2}" y="${yy-6}" text-anchor="middle" fill="${s.color}">${s.name}</text>`;
+    });
+    b+=`<text class="axis" x="${PL+ci*gw+gw/2}" y="${H-12}" text-anchor="middle">${esc(c)}</text>`;
+  });
+  host.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Grouped bar chart">${g}${b}</svg>`;
+  if(legendHost)legendHost.innerHTML=series.map(s=>`<span><i style="background:${s.color}"></i>${esc(s.name)}</span>`).join('');
+  wire(host);
+}
+
+function barsH(host,items,fmt){
+  const W=720,rh=30,PL=196,PR=64,PT=6;
+  const H=PT*2+items.length*rh;
+  const max=Math.max(...items.map(i=>i.v))*1.02,iw=W-PL-PR;
+  let b='';
+  items.forEach((it,i)=>{
+    const y=PT+i*rh,w=(it.v/max)*iw;
+    b+=`<text class="axis" x="${PL-10}" y="${y+rh/2+3.5}" text-anchor="end" style="font-size:11px">${esc(it.n)}</text>`;
+    b+=`<rect class="bar" x="${PL}" y="${y+5}" width="${Math.max(w,2)}" height="${rh-12}" rx="4" fill="${it.c}" data-t="${esc(it.n)}: ${fmt(it.v)}"/>`;
+    b+=`<text class="dlab" x="${PL+w+8}" y="${y+rh/2+3.5}">${fmt(it.v)}</text>`;
+  });
+  host.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Horizontal bar chart">${b}</svg>`;
+  wire(host);
+}
+
+function lineDual(host,legendHost,series,cats){
+  const W=720,H=240,PL=56,PR=56,PT=16,PB=32;
+  const iw=W-PL-PR,ih=H-PT-PB;
+  let out='';
+  for(let i=0;i<=3;i++){const yy=PT+ih*i/3;out+=`<line class="gridline" x1="${PL}" x2="${W-PR}" y1="${yy}" y2="${yy}"/>`}
+  cats.forEach((c,i)=>{out+=`<text class="axis" x="${PL+iw*i/(cats.length-1)}" y="${H-11}" text-anchor="middle">${esc(c)}</text>`});
+  series.forEach(s=>{
+    const mn=Math.min(...s.vals)*0.97,mx=Math.max(...s.vals)*1.03;
+    const y=v=>PT+ih-((v-mn)/(mx-mn))*ih;
+    const pts=s.vals.map((v,i)=>[PL+iw*i/(cats.length-1),y(v)]);
+    out+=`<polyline fill="none" stroke="${s.color}" stroke-width="2" stroke-linejoin="round" points="${pts.map(p=>p.join(',')).join(' ')}"/>`;
+    pts.forEach((p,i)=>{out+=`<circle class="bar" cx="${p[0]}" cy="${p[1]}" r="4.5" fill="${s.color}" stroke="var(--surface)" stroke-width="2" data-t="${esc(cats[i])} &middot; ${esc(s.name)}: ${s.vals[i].toLocaleString()}"/>`});
+    const last=pts[pts.length-1];
+    out+=`<text class="dlab" x="${last[0]+9}" y="${last[1]+3.5}" fill="${s.color}">${esc(s.name)}</text>`;
+  });
+  host.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Line chart">${out}</svg>`;
+  if(legendHost)legendHost.innerHTML=series.map(s=>`<span><i style="background:${s.color}"></i>${esc(s.name)}</span>`).join('');
+  wire(host);
+}
+
+function wire(host){
+  const t=tip(host);
+  host.querySelectorAll('[data-t]').forEach(el=>{
+    el.addEventListener('mouseenter',e=>{
+      const r=el.getBoundingClientRect(),h=host.getBoundingClientRect();
+      t.innerHTML=el.dataset.t;t.style.left=(r.left-h.left+r.width/2)+'px';t.style.top=(r.top-h.top)+'px';t.classList.add('on');
+    });
+    el.addEventListener('mouseleave',()=>t.classList.remove('on'));
+  });
+}
+
+function drawAll(){
+  const c1=col('s1'),c2=col('s2'),c3=col('s3'),c4=col('s4');
+  const m=v=>v>=1000?(v/1000).toFixed(0)+'k':Math.round(v);
+  barsGrouped(document.getElementById('c-rev'),document.getElementById('l-rev'),
+    [{name:'Revenue',color:c1,vals:[158104,177556,182447]},{name:'Expense',color:c2,vals:[87172,91797,95640]},{name:'Net income',color:c4,vals:[49552,58471,57048]}],
+    ['FY2023','FY2024','FY2025'],m);
+  barsH(document.getElementById('c-exp'),[
+    {n:'Compensation',v:54487,c:c1},{n:'Professional and outside services',v:12356,c:c2},
+    {n:'Technology, comms and equipment',v:11029,c:c3},{n:'Other',v:6776,c:c4},
+    {n:'Marketing',v:5531,c:c2},{n:'Occupancy',v:5461,c:c1}],v=>v.toLocaleString());
+  barsGrouped(document.getElementById('c-seg'),document.getElementById('l-seg'),
+    [{name:'Revenue',color:c1,vals:[78454,76029,24073,7025]},{name:'Expense',color:c2,vals:[38216,40267,15332,1825]},{name:'Net income',color:c4,vals:[27761,18245,6522,4520]}],
+    ['CIB','CCB','AWM','Corporate'],m);
+  barsH(document.getElementById('c-ops'),[
+    {n:'FY2025',v:1292,c:c1},{n:'FY2024',v:1417,c:c1},{n:'FY2023',v:1228,c:c1}],v=>'$'+v.toLocaleString()+'m');
+  lineDual(document.getElementById('c-scale'),document.getElementById('l-scale'),
+    [{name:'Employees',color:c1,vals:[309926,317233,318512,320560]},{name:'Branches',color:c4,vals:[4897,4966,5083,5135]}],
+    ['2023','2024','2025','2Q26']);
+  barsH(document.getElementById('c-peer'),[
+    {n:'JPMorgan Chase',v:5015069,c:c1},{n:'Bank of America',v:3499191,c:c2},
+    {n:'Citigroup',v:2894700,c:c2},{n:'Wells Fargo',v:2282201,c:c2},
+    {n:'Goldman Sachs',v:2127711,c:c2},{n:'Morgan Stanley',v:1675057,c:c2}],
+    v=>'$'+(v/1000000).toFixed(2)+'tn');
+}
+
+/* ---------- search + filter ---------- */
+let F='all',Q='';
+function apply(){
+  let shown=0,total=0;
+  document.querySelectorAll('.srch').forEach(el=>{
+    total++;
+    const okF=F==='all'||el.dataset.ev===F;
+    const okQ=!Q||el.dataset.txt.includes(Q);
+    const ok=okF&&okQ;
+    el.classList.toggle('hide',!ok);
+    if(ok)shown++;
+  });
+  document.querySelectorAll('section').forEach(s=>{
+    const rows=s.querySelectorAll('.srch');
+    if(!rows.length)return;
+    s.classList.toggle('hide',![...rows].some(r=>!r.classList.contains('hide')));
+  });
+  document.querySelectorAll('.tw').forEach(w=>{
+    const rows=w.querySelectorAll('tbody .srch');
+    if(rows.length)w.classList.toggle('hide',![...rows].some(r=>!r.classList.contains('hide')));
+  });
+  document.getElementById('hits').textContent=(Q||F!=='all')?`${shown} of ${total}`:`${total} figures`;
+  document.getElementById('noresults').classList.toggle('hide',shown>0);
+}
+
+/* ---------- copy ---------- */
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');clearTimeout(t._x);t._x=setTimeout(()=>t.classList.remove('on'),1900)}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('.cp');if(!b)return;
+  const txt=b.dataset.cite;
+  const done=()=>{const o=b.textContent;b.textContent='Copied';b.classList.add('done');toast('Copied with citation and source URL');setTimeout(()=>{b.textContent=o;b.classList.remove('done')},1500)};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done).catch(()=>fallback(txt,done))}
+  else fallback(txt,done);
+});
+function fallback(txt,cb){const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');cb()}catch(_){toast('Copy failed, select the text manually')}document.body.removeChild(ta)}
+
+/* ---------- init ---------- */
+tiles();
+table('t-pnl','pnl');table('t-ratio','ratio');table('t-exp','exp');table('t-tech','tech');
+table('t-seg','seg');table('t-bal','bal');table('t-cap','cap');table('t-risk','risk');
+table('t-scale','scale');table('t-peer','peer');table('t-ret','ret');table('t-gaps','gaps');
+drawAll();apply();
+
+document.getElementById('q').addEventListener('input',e=>{Q=e.target.value.trim().toLowerCase();apply()});
+document.querySelectorAll('.seg button').forEach(b=>b.addEventListener('click',()=>{
+  F=b.dataset.f;
+  document.querySelectorAll('.seg button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+  apply();
+}));
+document.addEventListener('keydown',e=>{
+  if(e.key==='/'&&document.activeElement.tagName!=='INPUT'){e.preventDefault();document.getElementById('q').focus()}
+  if(e.key==='Escape'&&document.activeElement.id==='q'){document.getElementById('q').value='';Q='';apply();document.getElementById('q').blur()}
+});
+const obs=new IntersectionObserver(es=>{es.forEach(en=>{
+  if(en.isIntersecting){document.querySelectorAll('.rail a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+en.target.id))}
+})},{rootMargin:'-70px 0px -70% 0px'});
+document.querySelectorAll('section[id]').forEach(s=>obs.observe(s));
+matchMedia('(prefers-color-scheme:dark)').addEventListener('change',drawAll);
+</script>
+</body></html>
